@@ -5,11 +5,14 @@ inputs:
   stages:
     description: list of stages
     required: true
+  apps:
+    description: list of apps
+    required: true
 
 runs:
   using: composite
   steps:
     - name: foo
       run: |
-        echo "${{ inputs.stages }}"
+        echo '{"stages": ${{ inputs.stages }}, "apps: ${{ inputs.apps }}' | jq '.'
       shell: bash
