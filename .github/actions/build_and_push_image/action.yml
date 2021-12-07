@@ -21,6 +21,7 @@ runs:
         | sed 's/\[//g' \
         | sed 's/\]//g' \
         `
+        echo $IMAGES_AS_CSV_STRING
         echo "::set-output name=images_as_csv_string::$IMAGES_AS_CSV_STRING"
       shell: bash
     - name: output_images
