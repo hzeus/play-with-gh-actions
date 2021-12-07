@@ -12,7 +12,8 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: build_image_names
+    - name: Build Image Names
+      id: build_image_names
       run: |
         IMAGES_AS_CSV_STRING=` \
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
