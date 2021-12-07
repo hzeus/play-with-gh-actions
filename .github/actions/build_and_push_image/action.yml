@@ -1,0 +1,10 @@
+name: "Build image and push it with a myriad of tags"
+description: "does what it says in the name"
+
+runs:
+  using: composite
+  steps:
+    - name: foo
+      run: |
+        echo hello
+      shell: bash
