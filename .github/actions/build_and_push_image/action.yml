@@ -12,7 +12,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: foo
+    - name: build_image_names
       run: |
         IMAGES_AS_CSV_STRING=` \
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
@@ -21,5 +21,9 @@ runs:
         | sed 's/\[//g' \
         | sed 's/\]//g' \
         `
-        echo $IMAGES_AS_CSV_STRING
+        echo "::set-output name=images_as_csv_string::$IMAGES_AS_CSV_STRING"
+      shell: bash
+    - name: output_images
+      run: |
+        echo ${{ steps.build_image_names.images_as_csv_string }}
       shell: bash
