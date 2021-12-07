@@ -11,5 +11,5 @@ runs:
   steps:
     - name: foo
       run: |
-        echo ${{ inputs.stages }}
+        echo "${{ inputs.stages }}"
       shell: bash
