@@ -15,6 +15,5 @@ runs:
     - name: foo
       run: |
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
-        # build the cartesian product of all stages and all apps \
         | jq '[.stages[] as $stages | .apps[] as $apps | {stage: $stages, app: $apps}]'
       shell: bash
