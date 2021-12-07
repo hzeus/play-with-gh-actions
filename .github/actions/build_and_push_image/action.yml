@@ -16,4 +16,7 @@ runs:
       run: |
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
         | jq '[.stages[] as $stages | .apps[] as $apps | {stage: $stages, app: $apps}]'
+        | jq -c 'map("api.setops.co/zweitag/my_project/" + .["stage"] + "/" + .["app"] + ":latest")' \
+        | sed 's/\[//g' \
+        | sed 's/\]//g'
       shell: bash
