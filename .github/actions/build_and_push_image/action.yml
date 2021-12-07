@@ -14,5 +14,6 @@ runs:
   steps:
     - name: foo
       run: |
-        echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' | jq '.stages[] as $stages | .apps[] as $apps | [$stages, $apps]'
+        echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
+        | jq '.stages[] as $stages | .apps[] as $apps | [$stages, $apps]'
       shell: bash
