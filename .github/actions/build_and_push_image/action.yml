@@ -16,5 +16,5 @@ runs:
       run: |
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
         | jq '.stages[] as $stages | .apps[] as $apps | [$stages, $apps]' \ 
-        | jq -c 'map("api.setops.co/zweitag/veritrustid/" + .[0] + "/" + .[1] + ":latest")'
+        | jq -c '.'
       shell: bash
