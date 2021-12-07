@@ -14,5 +14,5 @@ runs:
   steps:
     - name: foo
       run: |
-        echo '{"stages": ${{ inputs.stages }}, "apps: ${{ inputs.apps }}' | jq '.'
+        echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' | jq '.'
       shell: bash
