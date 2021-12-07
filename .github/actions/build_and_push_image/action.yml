@@ -26,5 +26,5 @@ runs:
       shell: bash
     - name: output_images
       run: |
-        echo ${{ steps.build_image_names.images_as_csv_string }}
+        echo ${{ steps.build_image_names.outputs.images_as_csv_string }}
       shell: bash
