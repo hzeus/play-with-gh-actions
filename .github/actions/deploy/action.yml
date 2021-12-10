@@ -22,4 +22,8 @@ runs:
           stages[$stage]="release_id_from_setops"
         done
         echo $stages["web"]
+        echo $stages["foo"]
+        echo $stages["clock"]
+        echo $stages[clock]
+        echo $stages["worker"]
       shell: bash
