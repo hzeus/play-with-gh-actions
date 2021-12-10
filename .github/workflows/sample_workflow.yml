@@ -25,6 +25,9 @@ jobs:
       matrix:
         stage: ${{ fromJson('["production", "demo"]') }}
     steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v2
+
       - name: "Deploy stage"
         id: deployment
         uses: ./.github/actions/deploy
