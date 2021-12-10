@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        stage: ${{ fromJson('["production", "demo"]') }}
+        stage: ${{ fromJson('["production"]') }}
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v2
