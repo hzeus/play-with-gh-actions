@@ -16,6 +16,6 @@ runs:
     - name: Create releases
       run: |
         declare -A stages
-        stages = (["web"]=123, ["clock"]="foo")
+        stages=(["web"]="123", ["clock"]="foo")
         echo $stages
       shell: bash
