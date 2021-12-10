@@ -19,7 +19,7 @@ runs:
         for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
           echo "Creating Release:"
           echo $stage
-          stages[stage]="release_id_from_setops"
+          stages[$stage]="release_id_from_setops"
         done
-        echo $stages
+        echo $stages["web"]
       shell: bash
