@@ -16,6 +16,8 @@ runs:
     - name: Create releases
       run: |
         declare -A stages
-        stages=(["web"]="123", ["clock"]="foo")
-        echo $stages
+        for stage in $(echo ${{ inputs.apps }} | jq '.[]'); do
+          echo "Creating Release:"
+          echo $stage
+        done
       shell: bash
