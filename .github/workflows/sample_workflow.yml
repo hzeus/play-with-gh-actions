@@ -16,3 +16,17 @@ jobs:
         with:
           stages: '["production", "demo"]'
           apps: '["web", "clock", "worker"]'
+
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        stage: ${{ fromJson('["production", "demo"]') }}
+    steps:
+      - name: "Deploy stage"
+        id: deployment
+        uses: ./.github/actions/deploy
+        with:
+          apps: '["web", "clock", "worker"]'

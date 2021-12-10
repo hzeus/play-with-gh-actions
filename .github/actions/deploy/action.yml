@@ -1,0 +1,21 @@
+name: "Deploy all given apps on the given stage"
+description: "does what it says in the name"
+
+inputs:
+  stage:
+    description: The stage on which the apps shall be deployed
+    required: true
+
+  apps:
+    description: list of apps
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Create releases
+      run: |
+        declare -A stages
+        stages = (["web"]=123, ["clock"]="foo")
+        echo $stages
+      shell: bash
