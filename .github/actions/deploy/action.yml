@@ -16,7 +16,7 @@ runs:
     - name: Create releases
       run: |
         declare -A stages
-        for stage in $(echo ${{ inputs.apps }} | jq '.[]'); do
+        for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
           echo "Creating Release:"
           echo $stage
         done
