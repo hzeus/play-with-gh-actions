@@ -43,4 +43,12 @@ runs:
         done
 
         echo "Commit"
+
+        echo "Wait for Releases"
+        max_times=10
+        for i in $(seq 1 $max_times); do 
+          echo foo $i
+          if [ $i = $max_times ]; then exit 1; fi
+        done
+
       shell: bash
