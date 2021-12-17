@@ -48,6 +48,10 @@ runs:
         max_times=10
         for i in $(seq 1 $max_times); do 
           echo foo $i
+          # Simulate an successful release
+          if [ $i = 9 ]; then break; fi
+          
+          # Simulate a non-successful release
           if [ $i = $max_times ]; then exit 1; fi
         done
 
