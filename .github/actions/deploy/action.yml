@@ -20,7 +20,7 @@ runs:
           stages[$stage]=release_id_from_setops
         done
 
-        for stage in $stages do
+        for stage in $stages; do
           echo "Creating Release:"
         done
 
