@@ -18,7 +18,7 @@ runs:
         declare -A stages
 
         for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
-          stages[$stage]=release_id_from_setops
+          stages[$stage]=$RANDOM
         done
 
         for stage in "${!stages[@]}"; do
