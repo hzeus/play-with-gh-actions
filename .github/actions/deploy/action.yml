@@ -22,8 +22,8 @@ runs:
 
         for stage in $stages do
           echo "Creating Release:"
-          echo $stage
         done
+
         echo $stages["web"]
         echo $stages["foo"]
         echo $stages["clock"]
