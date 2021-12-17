@@ -22,7 +22,7 @@ runs:
         done
 
         for stage in "${!stages[@]}"; do
-          release_id = ${stages[$stage]}
+          release_id=${stages[$stage]}
           echo Creating Release: $stage -- $release_id
         done
       shell: bash
