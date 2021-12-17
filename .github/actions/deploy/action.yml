@@ -15,14 +15,28 @@ runs:
   steps:
     - name: Create releases
       run: |
-        declare -A stages
-
-        for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
-          stages[$stage]=$RANDOM
+        declare -a stages
+        for stages in $(echo '${{ inputs.apps }}' | jq '.[]'); do
+          stages+=stage
         done
 
-        for stage in "${!stages[@]}"; do
-          release_id=${stages[$stage]}
-          echo Creating Release: $stage -- $release_id
+        declare -A stages_with_release_id
+
+        # RANDOM should be replaced with calls to setops
+        echo "Generating Releases"
+        for stage in ${stages[@]}; do
+          stages_with_release_id[$stage]=$RANDOM
         done
+
+        echo "Run pre-deploy-commands"
+
+        echo "Commit"
+
+        echo "Activating Releases"
+        for stage in "${stages[@]}"; do
+          release_id=${stages_with_release_id[$stage]}
+          echo Activating Release: $stage -- $release_id
+        done
+
+        echo "Commit"
       shell: bash
