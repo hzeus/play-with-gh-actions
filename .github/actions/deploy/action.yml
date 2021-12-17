@@ -25,6 +25,7 @@ runs:
         # RANDOM should be replaced with calls to setops
         echo "Generating Releases"
         for stage in ${stages[@]}; do
+          echo "Generating Release for $stage"
           stages_with_release_id[$stage]=$RANDOM
         done
 
