@@ -12,7 +12,7 @@ jobs:
 
       - name: "Build image and push it to setops image registry"
         id: build_and_push_app
-        uses: github/hzeus/build_and_push_image@main
+        uses: hzeus/build_and_push_image@main
         with:
           stages: '["production", "demo"]'
           apps: '["web", "clock", "worker"]'
@@ -30,6 +30,6 @@ jobs:
 
       - name: "Deploy stage"
         id: deployment
-        uses: github/hzeus/build_and_push_image@main
+        uses: hzeus/play-with-gh-actions/build_and_push_image@main
         with:
           apps: '["web", "clock", "worker"]'
