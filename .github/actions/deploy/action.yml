@@ -50,6 +50,8 @@ runs:
           echo foo $i
           # Simulate an successful release
           if [ $i = 9 ]; then break; fi
+
+          sleep 1
           
           # Simulate a non-successful release
           if [ $i = $max_times ]; then exit 1; fi
