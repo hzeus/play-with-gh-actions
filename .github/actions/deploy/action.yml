@@ -30,6 +30,9 @@ runs:
         done
 
         echo "Run pre-deploy-commands"
+        first_stage=${stages[0]}
+        $release_id_of_first_stage=${stages_with_release_id[$first_stage]}
+        echo Migrate for $first_stage - $release_id_of_first_stage
 
         echo "Commit"
 
