@@ -17,7 +17,7 @@ runs:
       run: |
         declare -a stages
         for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
-          stages+=stage
+          stages+=($stage)
         done
 
         declare -A stages_with_release_id
