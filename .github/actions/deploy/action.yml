@@ -17,9 +17,12 @@ runs:
       run: |
         declare -A stages
         for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
+          stages[$stage]=release_id_from_setops
+        done
+
+        for stage in $stages do
           echo "Creating Release:"
           echo $stage
-          stages[$stage]=release_id_from_setops
         done
         echo $stages["web"]
         echo $stages["foo"]
