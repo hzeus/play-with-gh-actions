@@ -16,11 +16,13 @@ runs:
     - name: Create releases
       run: |
         declare -A stages
+
         for stage in $(echo '${{ inputs.apps }}' | jq '.[]'); do
           stages[$stage]=release_id_from_setops
         done
 
         for stage in "${!stages[@]}"; do
-          echo Creating Release: $stage -- ${stages[$stage]}
+          release_id = ${stages[$stage]}
+          echo Creating Release: $stage -- $release_id
         done
       shell: bash
