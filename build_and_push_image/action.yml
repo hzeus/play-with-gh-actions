@@ -15,6 +15,13 @@ runs:
     - name: Build Image Names
       id: build_image_names
       run: |
+        declare -a image_names
+        for stage in $(echo '${{ inputs.stages }}' | jq '.[]'); do
+          for app in $(echo '${{ inputs.apps }}' | jq '.[]'); do
+            echo $stage $app
+          done
+        done
+
         IMAGES_AS_CSV_STRING=` \
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
         | jq '[.stages[] as $stages | .apps[] as $apps | {stage: $stages, app: $apps}]' \
