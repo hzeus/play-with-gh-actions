@@ -26,7 +26,7 @@ runs:
         concatenated_images=$(printf ",%s" "${images[@]}")
         concatenated_images=${concatenated_images:1}
 
-        echo "::set-output name=concatenated_images:$concatenated_images
+        echo "::set-output name=concatenated_images:$concatenated_images"
       shell: bash
     - name: output_images
       run: |
