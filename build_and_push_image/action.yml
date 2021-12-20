@@ -18,7 +18,7 @@ runs:
         declare -a image_names
         for stage in $(echo '${{ inputs.stages }}' | jq '.[]'); do
           for app in $(echo '${{ inputs.apps }}' | jq '.[]'); do
-            image_names+=("api.setops.co/zweitag/my_project/"+$stage+"/"+$app+":latest")
+            image_names+=("api.setops.co/zweitag/my_project/$stage/$app:latest")
           done
         done
         echo $image_names
