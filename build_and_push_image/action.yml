@@ -26,20 +26,9 @@ runs:
         concatenated_images=$(printf ",%s" "${images[@]}")
         concatenated_images=${concatenated_images:1}
 
-        echo $concatenated_images
-
-
-        IMAGES_AS_CSV_STRING=` \
-        echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
-        | jq '[.stages[] as $stages | .apps[] as $apps | {stage: $stages, app: $apps}]' \
-        | jq -c 'map("api.setops.co/zweitag/my_project/" + .["stage"] + "/" + .["app"] + ":latest")' \
-        | sed 's/\[//g' \
-        | sed 's/\]//g' \
-        `
-        echo $IMAGES_AS_CSV_STRING
-        echo "::set-output name=images_as_csv_string::$IMAGES_AS_CSV_STRING"
+        echo "::set-output name=concatenated_images:$concatenated_images
       shell: bash
     - name: output_images
       run: |
-        echo ${{ steps.build_image_names.outputs.images_as_csv_string }}
+        echo ${{ steps.build_image_names.outputs.concatenated_images }}
       shell: bash
