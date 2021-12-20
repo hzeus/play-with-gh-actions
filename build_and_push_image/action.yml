@@ -15,13 +15,19 @@ runs:
     - name: Build Image Names
       id: build_image_names
       run: |
-        declare -a image_names
+        declare -a images
         for stage in $(echo '${{ inputs.stages }}' | jq -r '.[]'); do
           for app in $(echo '${{ inputs.apps }}' | jq -r '.[]'); do
-            image_names+=("api.setops.co/zweitag/my_project/$stage/$app:latest")
+            images+=("api.setops.co/zweitag/my_project/$stage/$app:latest")
           done
         done
-        echo $image_names
+
+        # https://stackoverflow.com/a/2317171
+        concatenated_images=$(printf ",%s" "${images[@]}")
+        concatenated_images=${concatenated_images:1}
+
+        echo $concatenated_images
+
 
         IMAGES_AS_CSV_STRING=` \
         echo '{"stages": ${{ inputs.stages }}, "apps": ${{ inputs.apps }} }' \
