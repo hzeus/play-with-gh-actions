@@ -16,6 +16,14 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Detect setops user
+      id: detect_setops_user
+      run: |
+        if [ -n "${{ secrets.SETOPS_USER}}" ]
+          setops_user=${{ secrets.SETOPS_USER }}
+        fi
+        echo $setops_user
+      shell: bash
     - name: Build Image Names
       id: build_image_names
       run: |
