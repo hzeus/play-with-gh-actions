@@ -3,11 +3,15 @@ description: "does what it says in the name"
 
 inputs:
   stages:
-    description: list of stages
+    description: List of stages in JSON format, e.g. '["production" ,"demo"]'
     required: true
   apps:
-    description: list of apps
+    description: List of apps in JSON format, e.g. '["web", "clock", "worker"]'
     required: true
+  setops_host:
+    description: The setops host
+    required: false
+    default: api.setops.co
 
 runs:
   using: composite
@@ -18,7 +22,7 @@ runs:
         declare -a images
         for stage in $(echo '${{ inputs.stages }}' | jq -r '.[]'); do
           for app in $(echo '${{ inputs.apps }}' | jq -r '.[]'); do
-            images+=("api.setops.co/zweitag/my_project/$stage/$app:latest")
+            images+=("${{ inputs.setops_host }}/zweitag/my_project/$stage/$app:latest")
           done
         done
 
