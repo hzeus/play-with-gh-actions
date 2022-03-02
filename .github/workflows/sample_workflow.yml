@@ -33,4 +33,3 @@ jobs:
         uses: ./deploy
         with:
           apps: '["web", "clock", "worker"]'
-          predeploy_command: "yeehah"
