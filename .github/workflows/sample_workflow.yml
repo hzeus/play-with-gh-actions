@@ -34,3 +34,12 @@ jobs:
         with:
           apps: '["web", "clock", "worker"]'
           predeploy_command: "yeehah"
+
+  notify:
+    name: Notify deployment status
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: check steps.build.outputs.exit_code
+        run: echo ${{ needs.deploy.result }}
+        if: always()
