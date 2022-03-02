@@ -14,11 +14,19 @@ inputs:
     description: The predeploy command
     required: false
 
+outputs:
+  exit_code:
+    description: Whether the deployment was succesful
+    value: ${{ steps.create_releases.outputs.exit_code }}
+
 runs:
   using: composite
   steps:
     - name: Create releases
+      id: create_releases
       run: |
+        run: echo "::set-output name=exit_code::1"
+
         declare -a stages
         for stage in $(echo '${{ inputs.apps }}' | jq -r '.[]'); do
           stages+=($stage)
@@ -65,5 +73,7 @@ runs:
           # Simulate a non-successful release
           if [ $i = $max_times ]; then exit 1; fi
         done
+
+        run: echo "::set-output name=exit_code::0"
 
       shell: bash

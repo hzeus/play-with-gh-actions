@@ -42,5 +42,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check steps.build.outputs.exit_code
-        run: echo ${{ needs.deploy.result }}
+        run: echo ${{ needs.deploy.outputs.exit_code }}
         if: always()
