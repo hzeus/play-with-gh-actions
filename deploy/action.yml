@@ -25,7 +25,7 @@ runs:
     - name: Create releases
       id: create_releases
       run: |
-        run: echo "::set-output name=exit_code::1"
+        echo "::set-output name=exit_code::1"
 
         declare -a stages
         for stage in $(echo '${{ inputs.apps }}' | jq -r '.[]'); do
@@ -74,6 +74,6 @@ runs:
           if [ $i = $max_times ]; then exit 1; fi
         done
 
-        run: echo "::set-output name=exit_code::0"
+        echo "::set-output name=exit_code::0"
 
       shell: bash
