@@ -10,6 +10,10 @@ inputs:
     description: list of apps
     required: true
 
+  predeploy_command:
+    description: The predeploy command
+    required: false
+
 runs:
   using: composite
   steps:
@@ -30,6 +34,13 @@ runs:
         done
 
         echo "Run pre-deploy-commands"
+
+        if [ ${{ inputs.predeploy_command }} -ge 1 ]; then
+          echo "predeploy_command is present"
+        else
+          echo "predeploy_command is missing"
+        fi
+
         first_stage=${stages[0]}
         release_id_of_first_stage=${stages_with_release_id[$first_stage]}
         echo Migrate for $first_stage - $release_id_of_first_stage
