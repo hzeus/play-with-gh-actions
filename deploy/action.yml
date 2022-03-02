@@ -35,7 +35,8 @@ runs:
 
         echo "Run pre-deploy-commands"
 
-        if [ "${{ inputs.predeploy_command }}" -ge 1 ]; then
+        predeploy_command=${{ inputs.predeploy_command }}
+        if [ ${#predeploy_command} -gt 0 ]; then
           echo "predeploy_command is present"
         else
           echo "predeploy_command is missing"
