@@ -37,14 +37,10 @@ runs:
 
         predeploy_command=${{ inputs.predeploy_command }}
         if [ ${#predeploy_command} -gt 0 ]; then
-          echo "predeploy_command is present"
-        else
-          echo "predeploy_command is missing"
+          first_stage=${stages[0]}
+          release_id_of_first_stage=${stages_with_release_id[$first_stage]}
+          echo Migrate for $first_stage - $release_id_of_first_stage
         fi
-
-        first_stage=${stages[0]}
-        release_id_of_first_stage=${stages_with_release_id[$first_stage]}
-        echo Migrate for $first_stage - $release_id_of_first_stage
 
         echo "Commit"
 
