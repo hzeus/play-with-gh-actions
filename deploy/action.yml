@@ -39,6 +39,8 @@ runs:
           first_stage=${stages[0]}
           release_id_of_first_stage=${stages_with_release_id[$first_stage]}
           echo Migrate for $first_stage - $release_id_of_first_stage
+        else
+          echo "No predeploy command has been configured, skipping."
         fi
 
         echo "Commit"
