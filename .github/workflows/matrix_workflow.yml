@@ -4,7 +4,7 @@ on: push
 jobs:
   matrix_job:
     runs-on: ubuntu-latest
-    concurrency: matrix-${{ github.ref }}
+    concurrency: matrix-${{ github.ref }}-${{ matrix.envs }}
     strategy:
       matrix:
         envs: [1, 2]
