@@ -16,6 +16,10 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Initialize Energy Estimation
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: start-measurement
     - name: Build Image Names
       id: build_image_names
       run: |
@@ -36,3 +40,12 @@ runs:
       run: |
         echo ${{ steps.build_image_names.outputs.concatenated_images }}
       shell: bash
+    - name: Checkout Repo Measurement
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: get-measurement
+        label: "repo checkout"
+    - name: Show Energy Results
+      uses: green-coding-berlin/eco-ci-energy-estimation@v2
+      with:
+        task: display-results
