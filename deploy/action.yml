@@ -71,7 +71,7 @@ runs:
           sleep 1
           
           # Simulate a non-successful release
-          if [ $i = $max_times ]; then exit 1; fi
+          # if [ $i = $max_times ]; then exit 1; fi
         done
 
         echo "::set-output name=exit_code::0"
